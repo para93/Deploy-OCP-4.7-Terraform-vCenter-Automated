@@ -24,10 +24,11 @@ DNS Prep:
 
 Bastion/Jump Station Prep:
 1. Install and update an Ubuntu 20.04 LTS bastion host that you will use for deploying and managing the cluster
-2. sudo mkdir ocp4 # we will use this for the terraform folder and the openshift install files, etc
-   chmod 777 ocp4
-3. cd ocp4
-4. 
+2. Create a folder which we will use for the terraform files and the openshift install files, etc
+3. mkdir ocp4
+4. cd ocp4
+5. ![dns](https://user-images.githubusercontent.com/92060430/159207532-b0e5835d-24ec-4198-9555-484474a8095d.JPG)
+
 
 
 
