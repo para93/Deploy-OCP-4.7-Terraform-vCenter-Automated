@@ -1,0 +1,15 @@
+export OCP_RELEASE="4.7.4"
+export CLUSTER_DOMAIN="demo.yourdomain.com"
+export GOVC_URL='vCenter IP'
+export GOVC_USERNAME='administrator@vsphere.local'
+export GOVC_PASSWORD='password'
+export GOVC_INSECURE=1 #Don't verify SSL certs on vCenter,If you use an untrusted security certificate, you must set GOVC_INSECURE
+export GOVC_NETWORK='vlan200' #VM Network
+export VMWARE_SWITCH='vCenter distributed switch'
+export GOVC_DATASTORE='datastore'
+export GOVC_DATACENTER='Datacenter name'
+export GOVC_RESOURCE_POOL=vCenter Cluster name/Resources
+export MYPATH=$(pwd)
+export HTTP_SERVER="your httpd/apache2 server"
+export PULL_SECRET=$(< /root/ocp4/pull-secret.json)
+export OCP_SSH_KEY=$(< /root/.ssh/id_rsa.pub)

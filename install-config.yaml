@@ -1,0 +1,23 @@
+cat <<EOF >> install-config.yaml
+apiVersion: v1
+baseDomain: yourdomain.com
+compute:
+- hyperthreading: Enabled
+  name: worker
+  replicas: 3
+controlPlane:
+  hyperthreading: Enabled
+  name: master
+  replicas: 3
+metadata:
+  name: demo #cluster domain in Active Directory withing your base domain
+platform:
+  vsphere:
+    vcenter: your vcenter IP address
+    username: administrator@vsphere.local
+    password: password
+    datacenter: Datacenter #Datacenter name in vCenter
+    defaultDatastore: your datastore
+pullSecret: '${PULL_SECRET}'
+sshKey: '${OCP_SSH_KEY}'
+EOF
