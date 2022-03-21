@@ -5,13 +5,13 @@ Hardware Components:
 3 x ESXi Hosts
 
 Software:
-Ubuntu Bastion/Jump Station 20.04
-Terraform v1.1.7
-vCenter 6.7U3
-GOVC
-OCP 4.7.4
-OCP Client and Installation tools
-Windows 2019 DNS Server
+1. Ubuntu Bastion/Jump Station 20.04
+2. Terraform v1.1.7
+3. vCenter 6.7U3
+4. GOVC
+5. OCP 4.7.4
+6. OCP Client and Installation tools
+7. Windows 2019 DNS Server
 
 Preparation of Environment:
 
