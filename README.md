@@ -18,16 +18,20 @@ Preparation of Environment:
 DNS Prep:
 1. Add your cluster domain, ex "demo" as a sub-domain to your base-domain. Base domain would be yourdomain.com. With cluster domain, it would be demo.yourdomain.com
 
-2. Add DNS A and PTR records for the bootstrap, 3 control planes and 3 worker nodes to your demo sub-domain. See screen shot
+2. Add DNS A and PTR records for the bootstrap, 3 control planes and 3 worker nodes to your demo sub-domain. 
+![dns](https://user-images.githubusercontent.com/92060430/159207593-45a59c6f-1419-4825-aee5-432a15b8c37b.JPG)
 
-3. Add DNS A record only for the 3 etcd database, no PTR is required. See screen shot
+3. Add DNS A record only for the 3 etcd database, no PTR is required.
+![dns1](https://user-images.githubusercontent.com/92060430/159207627-438e6ef0-2a0e-48c2-ac39-eee4daf76d0e.JPG)
+![dns2](https://user-images.githubusercontent.com/92060430/159207635-7b25c7df-e7c8-4906-9dff-8be48389c272.JPG)
+
 
 Bastion/Jump Station Prep:
 1. Install and update an Ubuntu 20.04 LTS bastion host that you will use for deploying and managing the cluster
 2. Create a folder which we will use for the terraform files and the openshift install files, etc
 3. mkdir ocp4
 4. cd ocp4
-5. ![dns](https://user-images.githubusercontent.com/92060430/159207532-b0e5835d-24ec-4198-9555-484474a8095d.JPG)
+5.
 
 
 
