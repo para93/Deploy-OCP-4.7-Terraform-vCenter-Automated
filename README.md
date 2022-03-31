@@ -51,6 +51,11 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
    \
    sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
    
+### Install HAProxy and Apache2
+    
+    #apt install haproxy
+    #apt install apache2
+   
 
 
 
