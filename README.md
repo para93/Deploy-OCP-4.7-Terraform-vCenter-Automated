@@ -116,7 +116,7 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
     
  ### Automating with Terraform
  
-    We need to export the environment variables as per the included file in the file directory
+    We need to export your customized environment variables as per the included file in the file directory
     
     Customize the following as per your environment, install-config.yaml, variables.tf and main.tf
     
@@ -159,6 +159,25 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
     terraform init
     terraform plan
     terraform apply -auto-approve
+    
+    Run the following to watch the installation complete
+    
+    openshift-install --dir=openshift-install wait-for install-complete --log-level debug
+    
+ ### Install complete
+ 
+     This the expected result. You will also see a message that the boostrap server can be be removed and you will also need to remove the any reference to the bootstrap server in your HAProxy config
+     
+     
+#openshift-install --dir=openshift-install wait-for install-complete --log-level debug
+
+DEBUG OpenShift Installer 4.7.4                    
+DEBUG Route found in openshift-console namespace: console
+DEBUG OpenShift console route is admitted          
+INFO Install complete!                            
+INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/root/terraform-vsphere-ignitiontest/openshift-install/auth/kubeconfig'
+INFO Access the OpenShift web-console here: https://console-openshift-console.apps.demo.yourdomain.com
+INFO Login to the console with user: "kubeadmin", and password: "TkwHE-GWu5U-rAEsA-FrgqQ"
     
     
     
