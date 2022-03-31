@@ -169,15 +169,27 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
      This the expected result. You will also see a message that the boostrap server can be be removed and you will also need to remove the any reference to the bootstrap server in your HAProxy config
      
      
-#openshift-install --dir=openshift-install wait-for install-complete --log-level debug
+    #openshift-install --dir=openshift-install wait-for install-complete --log-level debug
 
-DEBUG OpenShift Installer 4.7.4                    
-DEBUG Route found in openshift-console namespace: console
-DEBUG OpenShift console route is admitted          
-INFO Install complete!                            
-INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/root/terraform-vsphere-ignitiontest/openshift-install/auth/kubeconfig'
-INFO Access the OpenShift web-console here: https://console-openshift-console.apps.demo.yourdomain.com
-INFO Login to the console with user: "kubeadmin", and password: "TkwHE-GWu5U-rAEsA-FrgqQ"
+    DEBUG OpenShift Installer 4.7.4                    
+    DEBUG Route found in openshift-console namespace: console
+    DEBUG OpenShift console route is admitted          
+    INFO Install complete!                            
+    INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/root/terraform-vsphere-ignitiontest/openshift-install/auth/kubeconfig'
+    INFO Access the OpenShift web-console here: https://console-openshift-console.apps.demo.yourdomain.com
+    INFO Login to the console with user: "kubeadmin", and password: "TkwHE-GWu5U-rAEsA-FrgqQ"
+    
+    Verify the cluster is in a ready state
+    
+    oc get co
+    oc get nodes
+    
+    Certificate approval
+    
+    oc get csr | grep -i pending
+    oc adm certificate approval certname
+    #### To approve all Pending CSRs with single command ####
+    oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
     
     
     
