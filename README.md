@@ -43,7 +43,13 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
    \
    tar zxvf openshift-install-linux.tar.gz
    \
+   mv openshift-install /usr/local/bin
+   \
    gunzip govc_linux_amd64.gz
+   \
+   mv govc /usr/local/bin
+   \
+   chmod 777 /usr/local/bin/govc #you might run into permission denied
    
 ### Apt users can add the repository with:
    
@@ -51,10 +57,73 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
    \
    sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
    
-### Install HAProxy and Apache2
+### Install Terraform
+    
+    #apt install terraform -y
+   
+### Install, Configure HAProxy and Apache2
     
     #apt install haproxy
+    Because HAPrpxy will bind to multiple ports for Frontend services, we need to install SELinus policy and change SElinux to disable
+    #apt-get install policycoreutils
+    #vi /etc/selinux/config
+    #sestatus #should be disabled
+    #systemctl status haproxy #should show active
+    
     #apt install apache2
+    Change default listening port on Apache2 from 80 to 8080 because HAProxy is already listening on port 80
+    #vi /etc/apache2/ports.conf
+    #systemctl restart apache2
+    #systemctl status apache2 #should show active
+    
+    Note: you can disable Ubuntu firewall service
+    #ufw disable
+    #ufw status
+    
+    Check to see that Ubuntu is listening on TCP ports 6443, 22623, 443, 80 and 8080
+    #netstat -nltupe
+    
+ ### Generate SSH keys and configure Ubuntu to trust vCenter certificate
+ 
+    Generate SSH keys and add to agent for passwordless login
+    #ssh-keygen #accept the default name and location
+    #eval "$(ssh-agent -s)"
+    #ssh-add ~/.ssh/id_rsa
+    
+    Certificate # https://kb.vmware.com/s/article/2108294 #
+    The installation program requires access to your vCenter’s API, you must add your vCenter’s trusted root CA certificates to your system trust before you install an OpenShift Container Platform cluster.
+    1. From vCenter, download the root certificate, unzip and change the cert with .0 file extension to .crt
+    2. #mkdir /usr/share/ca-certificates/extra
+    3. copy the .crt to /usr/share/ca-certificates/extra using WINSCP
+    4. #dpkg-reconfigure ca-certificates #select the cert you just copied and follow the wizard to approve
+    
+ ### OCP Pull Secret
+ 
+    1. Logon to console.redhat.com with your account and copy the pull secret from the Infrastructure Provider page
+    https://console.redhat.com/openshift/install/vsphere/user-provisioned
+    2. copy the pull secret as a json file to the ocp4 directory you created earlier.
+    
+ ### Recap before we start the preparation of Automation using Terraform
+ 
+    1. Connfigure DNS
+    2. Download and extract OCP Client and Installer tools to ocp4 drirectory
+    3. Add GOVC and repo for Ubuntu APT users from Hashicorp
+    4. Install latest Terraform
+    4. Install and configure HAProxy and Apache2
+    5. Generate SSH keys and vCenter root CA
+    6. Copy Pull Secret from Redhat
+    
+ ### Automating with Terraform
+ 
+    1. We need to export the environment variables as per the included file in the file directory
+    
+    #cd ocp4
+    
+ 
+    
+    
+    
+    
    
 
 
