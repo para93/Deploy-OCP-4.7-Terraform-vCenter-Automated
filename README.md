@@ -73,9 +73,16 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
     Check to see that Ubuntu is listening on TCP ports 6443, 22623, 443, 80 and 8080
     #netstat -nltupe
     
- ### Automation with Terraform
+ ### Generate SSH keys and configure Ubuntu to trust vCenter certificate
  
-    1. Apply the environment variables as per the included file
+    #ssh-keygen #accept the default name and location
+    
+    Certificate # https://kb.vmware.com/s/article/2108294
+    1. From vCenter, download the root certificate, unzip and change the cert with .0 file extension to .crt
+    2. #mkdir /usr/share/ca-certificates/extra
+    3. copy the .crt to /usr/share/ca-certificates/extra using WINSCP
+    4. #dpkg-reconfigure ca-certificates #select the cert you just copied and follow the wizard to approve
+    
     
    
 
