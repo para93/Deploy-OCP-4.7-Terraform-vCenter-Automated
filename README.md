@@ -75,6 +75,7 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
     #vi /etc/apache2/ports.conf
     #systemctl restart apache2
     #systemctl status apache2 #should show active
+    #mkdir -p  /var/www/html/ignition
     
     Note: you can disable Ubuntu firewall service
     #ufw disable
@@ -115,9 +116,42 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
     
  ### Automating with Terraform
  
-    1. We need to export the environment variables as per the included file in the file directory
+    We need to export the environment variables as per the included file in the file directory
     
-    #cd ocp4
+    Customize the following as per your environment, install-config.yaml, variables.tf and main.tf
+    
+    Copy main.tf and variables.tf to ocp4 directory you created earlier
+    
+    mkdir ${MYPATH}/openshift-install
+    mkdir ~/.kube
+    cp install-config.yaml ${MYPATH}/openshift-install/install-config.yaml
+    cat > ${MYPATH}/openshift-install/bootstrap-append.ign <<EOF
+    {
+       "ignition": {
+         "config": {
+           "merge": [
+           {
+             "source": "http://${HTTP_SERVER}:8080/ignition/bootstrap.ign"
+           }
+           ]
+         },
+       "version": "3.1.0"
+      }
+    }
+    EOF
+    openshift-install create ignition-configs --dir  openshift-install --log-level debug
+    cp ${MYPATH}/openshift-install/*.ign /var/www/html/ignition/
+    chmod o+r /var/www/html/ignition/*.ign
+    restorecon -vR /var/www/html/
+    cp ${MYPATH}/openshift-install/auth/kubeconfig ~/.kube/config
+    
+    
+    
+    
+    
+    
+    
+    
     
  
     
