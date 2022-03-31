@@ -125,6 +125,8 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
     mkdir ${MYPATH}/openshift-install
     mkdir ~/.kube
     cp install-config.yaml ${MYPATH}/openshift-install/install-config.yaml
+    
+    #### Creating boostrap ignition file ####
     cat > ${MYPATH}/openshift-install/bootstrap-append.ign <<EOF
     {
        "ignition": {
@@ -139,11 +141,30 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
       }
     }
     EOF
+    
+    #### Creating master and worker ignition files ####
     openshift-install create ignition-configs --dir  openshift-install --log-level debug
     cp ${MYPATH}/openshift-install/*.ign /var/www/html/ignition/
     chmod o+r /var/www/html/ignition/*.ign
     restorecon -vR /var/www/html/
     cp ${MYPATH}/openshift-install/auth/kubeconfig ~/.kube/config
+    
+    TEST Access to the bootrap ignition file in the ignition directory
+    http://192.168.20.112:8080/ignition/bootstrap.ign
+    
+ ### Creating the cluster
+ 
+    From the ocp4 directory
+    
+    terraform init
+    terraform plan
+    terraform apply -auto-approve
+    
+    
+    
+    
+    
+    
     
     
     
