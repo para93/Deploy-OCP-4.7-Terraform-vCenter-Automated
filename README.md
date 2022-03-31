@@ -54,10 +54,21 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
 ### Install, Configure HAProxy and Apache2
     
     #apt install haproxy
+    Because HAPrpxy will bind to multiple ports for Frontend services, we need to install SELinus policy and change SElinux to disable
+    #apt-get install policycoreutils
+    #vi /etc/selinux/config
+    #sestatus #should be disabled
+    #systemctl status haproxy #should show active
     
     #apt install apache2
-    Change default listening port on Apache2 from 80 to 8080
-    #vi /etc/apache2/ports.confg
+    Change default listening port on Apache2 from 80 to 8080 because HAProxy is already listening on port 80
+    #vi /etc/apache2/ports.conf
+    #systemctl restart apache2
+    #systemctl status apache2 #should show active
+    
+    Note: you can disable Ubuntu firewall service
+    #ufw disable
+    #ufw status
    
 
 
