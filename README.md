@@ -72,6 +72,11 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
     
     Check to see that Ubuntu is listening on TCP ports 6443, 22623, 443, 80 and 8080
     #netstat -nltupe
+    
+ ### Automation with Terraform
+ 
+    1. Apply the environment variables as per the included file
+    
    
 
 
