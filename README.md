@@ -43,7 +43,13 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
    \
    tar zxvf openshift-install-linux.tar.gz
    \
+   mv openshift-install /usr/local/bin
+   \
    gunzip govc_linux_amd64.gz
+   \
+   mv govc /usr/local/bin
+   \
+   chmod 777 /usr/local/bin/govc #you might run into permission denied
    
 ### Apt users can add the repository with:
    
@@ -106,6 +112,15 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
     4. Install and configure HAProxy and Apache2
     5. Generate SSH keys and vCenter root CA
     6. Copy Pull Secret from Redhat
+    
+ ### Automating with Terraform
+ 
+    1. We need to export the environment variables as per the included file in the file directory
+    
+    #cd ocp4
+    
+ 
+    
     
     
     
