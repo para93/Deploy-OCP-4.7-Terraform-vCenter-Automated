@@ -191,6 +191,13 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
     #### To approve all Pending CSRs with single command ####
     oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
     
+ ### References
+    
+    https://github.com/latouchek/OCP4-UPI-Vsphere-StaticIP
+    https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs
+    https://www.virtuallyghetto.com/2020/06/full-ova-ovf-property-support-coming-to-terraform-provider-for-vsphere.html
+    
+    
     
     
     
