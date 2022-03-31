@@ -31,10 +31,10 @@ Bastion/Jump Station Prep:
 2. Create a folder which we will use for the terraform files and the openshift install files, etc
 3. mkdir ocp4
 4. cd ocp4
-5. Download the following to this directory
-   wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest-4.7/openshift-client-linux.tar.gz
-   wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest-4.7/openshift-install-linux.tar.gz
-   wget https://github.com/vmware/govmomi/releases/download/v0.24.0/govc_linux_amd64.gz
+5. Download the following to this directory;
+   wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest-4.7/openshift-client-linux.tar.gz;
+   wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest-4.7/openshift-install-linux.tar.gz;
+   wget https://github.com/vmware/govmomi/releases/download/v0.24.0/govc_linux_amd64.gz;
    tar zxvf openshift-client-linux.tar.gz
    tar zxvf openshift-install-linux.tar.gz
    gunzip govc_linux_amd64.gz
