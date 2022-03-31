@@ -51,6 +51,10 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
    \
    sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
    
+### Install Terraform
+    
+    #apt install terraform -y
+   
 ### Install, Configure HAProxy and Apache2
     
     #apt install haproxy
@@ -86,6 +90,23 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
     2. #mkdir /usr/share/ca-certificates/extra
     3. copy the .crt to /usr/share/ca-certificates/extra using WINSCP
     4. #dpkg-reconfigure ca-certificates #select the cert you just copied and follow the wizard to approve
+    
+ ### OCP Pull Secret
+ 
+    1. Logon to console.redhat.com with your account and copy the pull secret from the Infrastructure Provider page
+    https://console.redhat.com/openshift/install/vsphere/user-provisioned
+    2. copy the pull secret as a json file to the ocp4 directory you created earlier.
+    
+ ### Recap before we start the preparation of Automation using Terraform
+ 
+    1. Connfigure DNS
+    2. Download and extract OCP Client and Installer tools to ocp4 drirectory
+    3. Add GOVC and repo for Ubuntu APT users from Hashicorp
+    4. Install latest Terraform
+    4. Install and configure HAProxy and Apache2
+    5. Generate SSH keys and vCenter root CA
+    6. Copy Pull Secret from Redhat
+    
     
     
    
