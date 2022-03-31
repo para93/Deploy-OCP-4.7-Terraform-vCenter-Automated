@@ -75,9 +75,13 @@ Deploy OCP 4.7 UPI - Terraform - vCenter 6.7
     
  ### Generate SSH keys and configure Ubuntu to trust vCenter certificate
  
+    Generate SSH keys and add to agent for passwordless login
     #ssh-keygen #accept the default name and location
+    #eval "$(ssh-agent -s)"
+    #ssh-add ~/.ssh/id_rsa
     
-    Certificate # https://kb.vmware.com/s/article/2108294
+    Certificate # https://kb.vmware.com/s/article/2108294 #
+    The installation program requires access to your vCenter’s API, you must add your vCenter’s trusted root CA certificates to your system trust before you install an OpenShift Container Platform cluster.
     1. From vCenter, download the root certificate, unzip and change the cert with .0 file extension to .crt
     2. #mkdir /usr/share/ca-certificates/extra
     3. copy the .crt to /usr/share/ca-certificates/extra using WINSCP
